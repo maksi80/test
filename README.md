@@ -1,2 +1,3 @@
-# test
-angular1 spa
+to install local server run:
+npm install;
+npm start;
