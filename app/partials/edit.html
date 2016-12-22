@@ -1,0 +1,77 @@
+<div class="form-wrapper">
+    <form role="form" class="rbt-form" name="editForm" autocomplete="off" novalidate="novalidate" ng-submit="editAccount();">
+        
+            <h2 class="title">Izmeni nalog</h2>
+            <div class="block">
+                <!--ng-class="{ 'error' : editForm.username.$dirty}" -->
+                <label>Ime i Prezime</label>
+                <input type="text" class="" name="username" ng-model="user.username" placeholder="" ng-required='true' ng-pattern="/^[a-zA-Z\ ]+$/">
+                <p ng-messages="editForm.username.$error"  ng-if='editForm.username.$dirty  || editForm.$submitted'>
+                    <span ng-message="required" class="error-view">
+                        Unesi ime i prezime
+                    </span>
+                    <span ng-message="pattern" class="error-view">
+                        Only characters A-Z, a-z are  acceptable.
+                    </span>
+                </p>
+            </div>
+
+            <div class="block">
+                <label>Unesi email</label>
+                <input type="email" class="" name="email" ng-model="user.email" placeholder="" ng-required='true' ng-pattern="/\S+@\S+\.\S+/">
+                <p ng-messages="editForm.email.$error"  ng-if='editForm.email.$dirty  || editForm.$submitted'>
+                    <span ng-message="required" class="error-view">
+                        Unesi email
+                    </span>
+                    <span ng-message="pattern" class="error-view">
+                        Nije validan email
+                    </span>
+                </p>
+            </div>
+
+            <div class="block" ng-show="layout.isAdmin">
+                <label>Admin/User?</label>
+                
+                <div class="radio-inline">
+                    <label>
+                        <input type="radio" name="role" value="admin" ng-model="user.role">
+                        Admin
+                    </label>
+                </div>
+                <div class="radio-inline">
+                    <label>
+                        <input type="radio" name="role" value="user" ng-model="user.role">
+                        User
+                    </label>
+                </div>
+               
+            </div>
+
+            <div class="block">
+                <label>Unesi lozinku</label>
+                <input type="password" class="" name="password" ng-model="user.password" placeholder="" ng-required='true' valid-password>
+                <p ng-messages="editForm.password.$error"  ng-if='editForm.password.$dirty  || editForm.$submitted'>
+                    <span ng-message="required" class="error-view">
+                        Unesi password
+                    </span>
+                    <span ng-message="noValidPassword" class="error-view">
+                        Lozinka mora da ima najmanje 5 a najviše 8 karaktera
+                    </span>
+                </p>
+            </div>
+            <div class="block">
+                <label>Ponovi lozinku</label>
+                <input type="password" class="" name="confirmPassword" placeholder="" 
+                ng-model="user.confirmPassword" ng-required='true' equals="{{user.password}}">
+                <p ng-messages="editForm.confirmPassword.$error" ng-if='editForm.confirmPassword.$dirty  || editForm.$submitted'>
+                    <span ng-message="required" class="error-view">
+                        Unesi confirmPassword
+                    </span>
+                    <span ng-message="equals" class="error-view">
+                        confirmPassword nije isti
+                    </span>
+                </p>
+            </div>
+            <button type="submit" class="btn btn-default orange_button">Potvrdi</button>
+    </form>
+</div>

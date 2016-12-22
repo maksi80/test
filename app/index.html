@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+  <html lang="en" ng-app="PROJECT" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Test</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--base href="/"-->
+  
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&amp;subset=latin-ext" rel="stylesheet">
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+
+
+</head>
+<body class="ng-cloak home-img" ng-controller="MainCtrl">
+    <div class="error-container">
+        <div class="error-message"></div>
+    </div>
+    <div ng-include="'partials/header.html'" ng-show="layout.isLogged"></div>
+   
+    <section class="content-width" ng-view></section>
+
+    <script type="text/ng-template" id="message-box-alert.html">
+      <div class="overlay fill-parent">
+          <div class="popup">
+              <button class="close" ng-click="close()" ng-if="showClose"><i class="icon-remove"></i></button>
+              <div class="popup-content">
+                  <div class="my-notification">
+                    <div class="content" ng-if="message" ng-bind-html="message">
+                     
+                    </div>
+                    <div class="popup-action">
+                      <span class="ok-button" ng-click="close()"  ng-bind-html="(buttonTittle || 'Ok') "></span>
+                    </div>
+                </div>
+            </div>
+          </div>
+      </div>
+    </script>
+
+    <script type="text/ng-template" id="message-box-confirm.html">
+      <div class="overlay fill-parent">
+          <div class="popup">
+              <button class="close" ng-click="reject()" ng-if="showClose"><i class="icon-remove"></i></button>
+              <div class="popup-content">
+
+                  <div class="my-notification">
+                    <div class="content" ng-if="text" ng-bind-html="text">
+                     
+                    </div>
+                    <div class="popup-action">
+                      <span class="ok-button" ng-click="confirm()" ng-bind-html="(buttonTittleOk || 'U REDU') "></span>
+                      <span class="cancel-button" ng-click="reject()" ng-bind-html="(buttonTittle || 'Cancel') "></span>
+                    </div>
+                </div>
+
+            </div>
+          </div>
+      </div>
+    </script>
+
+  <script src="bower_components/html5-boilerplate/dist/js/vendor/jquery-1.12.0.min.js"></script>
+  <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+  <script src="bower_components/angular-messages/angular-messages.js"></script>
+
+  <script src="js/providers/providers.js"></script>
+  <script src="js/services/services.js"></script>
+  <script src="js/services/user-service.js"></script>
+  <script src="js/services/popup.js"></script>
+  <script src="js/services/message-box.js"></script>
+
+  <script src="js/controllers/main.js"></script>
+  <script src="js/controllers/home.js"></script>
+  <script src="js/controllers/user.js"></script>
+  <script src="js/controllers/edit.js"></script>
+
+  <script src="js/directives/directives.js"></script>
+  <script src="js/directives/password-equals.js"></script>
+  <script src="js/directives/prevent-click.js"></script>
+  <script src="js/directives/notification.js"></script>
+  <script src="js/app.js"></script>
+  
+</body>
+</html>

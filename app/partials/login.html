@@ -1,0 +1,38 @@
+
+<div class="wrapper">
+        <div class="form-wrapper">
+            <form role="form" class="rbt-form" name="loginForm"  autocomplete="off" novalidate="novalidate" ng-submit="login()">
+                
+                <h2 class="title">Prijavi se</h2>
+                <div class="block">
+                    <!--ng-class="{ 'error' : loginForm.username.$dirty}" -->
+                    <label>Ime i Prezime</label>
+                    <input type="text" class="" name="username" ng-model="user.username" placeholder="" ng-required='true' ng-pattern="/^[a-zA-Z\ ]+$/">
+                    <p ng-messages="loginForm.username.$error"  ng-if='loginForm.username.$dirty  || loginForm.$submitted'>
+                        <span ng-message="required" class="error-view">
+                            Unesi ime i prezime
+                        </span>
+                        <span ng-message="pattern" class="error-view">
+                            Only characters A-Z, a-z are  acceptable.
+                        </span>
+                    </p>
+                </div>  
+                <div class="block">
+                <label>Unesi lozinku</label>
+                <input type="password" class="" name="password" ng-model="user.password" placeholder="" ng-required='true' valid-password>
+                <p ng-messages="loginForm.password.$error"  ng-if='loginForm.password.$dirty  || loginForm.$submitted'>
+                    <span ng-message="required" class="error-view">
+                        Unesi password
+                    </span>
+                    <span ng-message="noValidPassword" class="error-view">
+                        Lozinka mora da ima najmanje 5 a najviše 8 karaktera
+                    </span>
+                </p>
+            </div>
+                <button type="submit" class="btn btn-default orange_button">Prijavi se</button>
+            </form>
+            <br>
+            <a href="#!/register" class="center-link">Registruj se</a>
+        </div>
+
+</div>
