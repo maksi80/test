@@ -20,7 +20,7 @@ angular.module('PROJECT.controllers').controller('EditCtrl', ['$rootScope','$sco
 
         $scope.editAccount = function() {
             if(!$scope.editForm.$valid){
-                messageBox.alert("nije validna Register forma");
+                messageBox.alert("nije validna forma");
                 return;
             }
 

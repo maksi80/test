@@ -46,11 +46,7 @@ angular.module('PROJECT.services').factory('popup', ['$document', '$q', '$templa
                 $scope.$on('$destroy', close);
 
                 if (!modal){
-
                     $scope.$on('$locationChangeSuccess', close);
-                    /*element.on('click', function(e) {
-                        (e.target === this) && close();
-                    });*/
                 }
                 element.css('zIndex', zIndex);
                 zIndex += 1;

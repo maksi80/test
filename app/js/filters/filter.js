@@ -1,3 +1,3 @@
 'use strict';
 
-angular.module('PROJECT.filters',['PROJECT.localeTranslation']);
+angular.module('PROJECT.filters',[]);

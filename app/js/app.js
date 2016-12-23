@@ -41,8 +41,6 @@ config(['$routeProvider', '$httpProvider', '$locationProvider', function($routeP
     $locationProvider.hashPrefix('!');
     $routeProvider.otherwise({redirectTo: '/404'});
 
-    //$locationProvider.html5Mode(true);
-   
     
 }])
 .run(['$rootScope','$location','userService',function($rootScope,$location, userService ){
@@ -56,7 +54,6 @@ config(['$routeProvider', '$httpProvider', '$locationProvider', function($routeP
         }
       }
       if(next.authorize === true && !userService.isLogged()) {
-          //console.log("You need to be authenticated to see this page!");
           event.preventDefault();
           $rootScope.$broadcast('authRequired');
       }

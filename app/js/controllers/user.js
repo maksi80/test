@@ -10,7 +10,6 @@ angular.module('PROJECT.controllers').controller('UserCtrl', ['$rootScope','$sco
         $scope.login = function() {
             if(!$scope.loginForm.$valid){
                 console.log("nije validna login forma");
-                //$scope.loginForm.$setPristine();
                 return;
             }
             var user = {
@@ -23,7 +22,7 @@ angular.module('PROJECT.controllers').controller('UserCtrl', ['$rootScope','$sco
                     userService.setCredentials(response.data);
                     $rootScope.$broadcast('authSuccess');
                     
-                    messageBox.alert('Dobrodosli!Uspesno ste se logovali',false,$timeout(function () {
+                    messageBox.alert('Dobrodosli!Uspesno ste se logovali!',false,$timeout(function () {
                         if(response.data.role == "admin"){
                             $location.path('/lists');
                             return;
@@ -39,7 +38,6 @@ angular.module('PROJECT.controllers').controller('UserCtrl', ['$rootScope','$sco
         $scope.register = function() {
         	if(!$scope.registerForm.$valid){
                 console.log("nije validna Register forma");
-                //$scope.registerForm.$setPristine();
                 return;
             }
 
@@ -49,7 +47,7 @@ angular.module('PROJECT.controllers').controller('UserCtrl', ['$rootScope','$sco
                 password:      $scope.user.password,
                 registerDate:  new Date().getTime(),
                 latsChange:    new Date().getTime(),
-                role:          "user" //"admin"
+                role:          "user"
             };
 
             userService.create(user)
@@ -58,8 +56,6 @@ angular.module('PROJECT.controllers').controller('UserCtrl', ['$rootScope','$sco
                         messageBox.alert('Registration successful',false,$timeout(function () {
                             $location.path('/login');
                         }, 2000));
-                        /*alert('Registration successful');
-                        $location.path('/login');*/
                     } else {
                         messageBox.alert(response.message);
                     }
