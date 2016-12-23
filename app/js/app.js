@@ -48,6 +48,13 @@ config(['$routeProvider', '$httpProvider', '$locationProvider', function($routeP
 .run(['$rootScope','$location','userService',function($rootScope,$location, userService ){
 
     $rootScope.$on("$routeChangeStart", function(event, next, current) {
+      if(userService.isLogged() && (next.$$route.originalPath == '/login' || next.$$route.originalPath == '/register')){
+        if($rootScope.layout.isAdmin){
+          $location.path('/lists');
+        }else{
+          $location.path('/');
+        }
+      }
       if(next.authorize === true && !userService.isLogged()) {
           //console.log("You need to be authenticated to see this page!");
           event.preventDefault();

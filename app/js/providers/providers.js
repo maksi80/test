@@ -13,13 +13,16 @@ angular.module('PROJECT.providers',[]).provider('myProvider',
             id:             1
         }];
 
-        if(!localStorage.users){
-            localStorage.users = JSON.stringify(users);
+        if(!localStorage.getItem(normalizeKey('users'))) {
+            localStorage.setItem(normalizeKey('users'), JSON.stringify(users));
         }
 
-    	//localStorage.users = JSON.stringify(users);
+        function normalizeKey( key ) {
+            return( "storage_" + key );
+        }
+
         this.$get = function() {
-            return JSON.parse(localStorage.users);
+            return JSON.parse(localStorage.getItem(normalizeKey('users')));
         };
     }
 )

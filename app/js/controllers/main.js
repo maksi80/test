@@ -11,7 +11,6 @@ angular.module('PROJECT.controllers',[]).controller('MainCtrl', ['$scope','$root
         $rootScope.layout.isLogged = userService.isLogged();
 
         $rootScope.$on('authRequired', function(event) {
-            //$scope.layout.login = true;
             userService.clearCredentials();
             $location.path('/login');
         });
@@ -35,7 +34,6 @@ angular.module('PROJECT.controllers',[]).controller('MainCtrl', ['$scope','$root
 
         $rootScope.$on('$routeChangeSuccess', function(next, current) {
             setupNavigation();
-            //$scope.layout.login = false;
             $scope.layout.loader = false;
         });
 
@@ -58,7 +56,6 @@ angular.module('PROJECT.controllers',[]).controller('MainCtrl', ['$scope','$root
             var nav = navigation();
             $scope.layout.activeNav = nav.activeNav;
             $scope.layout.navigation = nav.navigation;
-            //console.log('navigation',nav);
             $scope.layout.activeSubNav = nav.activeSubNav;
         }
 

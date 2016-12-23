@@ -10,7 +10,6 @@ angular.module('PROJECT.services').factory('userService', ['$rootScope','$timeou
         },
         getById: function(id) {
             var deferred = $q.defer();
-            //var filtered = $filter('filter')(getUsers(), { id: id });
             var filtered = getUsers().filter(function(user){
                 return user.id == id;
             });
@@ -68,31 +67,7 @@ angular.module('PROJECT.services').factory('userService', ['$rootScope','$timeou
             deferred.resolve({ success: true });
 
             return deferred.promise;
-            
-            /*var deferred = $q.defer();
-            var _this = this;
 
-            $timeout(function () {
-                _this.getByUsername(user.username)
-                    .then(function (duplicateUser) {
-                        if (duplicateUser !== null) {
-                            deferred.resolve({ success: false, message: 'Username "' + user.username + '" is already taken' });
-                        } else {
-                            var users = getUsers();
-
-                            for (var i = 0; i < users.length; i++) {
-                                if (users[i].id === user.id) {
-                                    users[i] = user;
-                                    break;
-                                }
-                            }
-                            setUsers(users);
-                            deferred.resolve({ success: true });
-                        }
-                    });
-            }, 1000);
-
-            return deferred.promise;*/
         },
         delete: function(id) {
             var deferred = $q.defer();
@@ -126,40 +101,36 @@ angular.module('PROJECT.services').factory('userService', ['$rootScope','$timeou
             }, 1000);
         },
         isLogged: function() {
-            if(!localStorage.isLogged){
-                localStorage.isLogged = JSON.stringify(false);
-            }
-
-            return JSON.parse(localStorage.isLogged);
+            return getFromLocalStorage('isLogged');
         },
         clearCredentials: function() {
             try{
-              localStorage.setItem('currentUser', JSON.stringify(null));
-              localStorage.setItem('isLogged', false);
+                saveToLocalStorage('currentUser',null);
+                saveToLocalStorage('isLogged',false);
             }
             catch(e){}
         },
         setCredentials: function(user) {
             try{
-                localStorage.setItem('currentUser', JSON.stringify(user));
-                localStorage.setItem('isLogged', true);
+                saveToLocalStorage('currentUser',user);
+                saveToLocalStorage('isLogged',true);
             }
             catch(e){}
         },
         pullUserData: function() {
             var deferred = $q.defer();
-            var currentUser = JSON.parse(localStorage.getItem('currentUser'));
-            var isLogged = JSON.parse(localStorage.getItem('isLogged'));
+            var currentUser = getFromLocalStorage('currentUser');
+            var isLogged = getFromLocalStorage('isLogged');
 
-            if(!isLogged || !currentUser){
-                localStorage.setItem('currentUser', JSON.stringify(null));
-                localStorage.setItem('isLogged', false);
+            if(!isLogged || !currentUser) {
+                saveToLocalStorage('currentUser',null);
+                saveToLocalStorage('isLogged',false);
             }
 
             deferred.resolve(currentUser);
             return deferred.promise;
         },
-        ClearAll: function() {
+        clearAll: function() {
             try{
                 localStorage.clear();
             }
@@ -171,16 +142,26 @@ angular.module('PROJECT.services').factory('userService', ['$rootScope','$timeou
 
     // private functions
 
-    function getUsers() {
-        if(!localStorage.users){
-            localStorage.users = JSON.stringify([]);
-        }
+    
+    function normalizeKey( key ) {
+        return( "storage_" + key );
+    }
 
-        return JSON.parse(localStorage.users);
+    function saveToLocalStorage(key, value) {
+        localStorage.setItem(normalizeKey(key), JSON.stringify(value ));
+    }
+
+    function getFromLocalStorage(key) {
+        key = normalizeKey( key );
+        return (key in localStorage) ? JSON.parse(localStorage.getItem(key)) : null;
+    }
+
+    function getUsers() {
+        return getFromLocalStorage('users');
     }
 
     function setUsers(users) {
-        localStorage.users = JSON.stringify(users);
+        saveToLocalStorage('users',users);
     }
-   
+
 }]);
