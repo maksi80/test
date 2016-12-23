@@ -86,9 +86,7 @@ angular.module('PROJECT.services').factory('userService', ['$rootScope','$timeou
             return deferred.promise;
         },
         login: function(username, password, callback) {
-            var deferred = $q.defer();
             var _this = this;
-            
             $timeout(function () {
                 var response;
                 _this.getByUsername(username)
@@ -101,8 +99,6 @@ angular.module('PROJECT.services').factory('userService', ['$rootScope','$timeou
                         callback(response);
                     });
             }, 1000);
-
-            return deferred.promise;
         },
         isLogged: function() {
             return getFromLocalStorage('isLogged');
