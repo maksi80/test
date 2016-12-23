@@ -2,7 +2,7 @@ angular.module('PROJECT.services').factory('popup', ['$document', '$q', '$templa
     function($document, $q, $templateCache, $compile, $window) {
 
         var popupCount = 0;
-        var zIndex = 1000,
+        var zIndex = 9999,
             $win = $(window),
             $doc = $('html, body'),
             $html = $('html');
