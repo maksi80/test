@@ -1,11 +1,7 @@
 'use strict';
 angular.module('PROJECT.controllers',[]).controller('MainCtrl', ['$scope','$rootScope','userService','navigation','$location','myProvider',function($scope, $rootScope, userService,navigation, $location,myProvider) {
         $rootScope.globals = {};
-        $rootScope.layout = {
-            loader: false,
-            notification: 'Ovo je isprobavanje',
-            showNotification: true
-        };
+        $rootScope.layout = {};
 
         $rootScope.layout.isLogged = userService.isLogged();
 
@@ -32,7 +28,6 @@ angular.module('PROJECT.controllers',[]).controller('MainCtrl', ['$scope','$root
 
         $rootScope.$on('$routeChangeSuccess', function(next, current) {
             setupNavigation();
-            $scope.layout.loader = false;
         });
 
         userService.pullUserData().then(function(userData) {
@@ -53,7 +48,6 @@ angular.module('PROJECT.controllers',[]).controller('MainCtrl', ['$scope','$root
         function setupNavigation() {
             var nav = navigation();
             $scope.layout.activeNav = nav.activeNav;
-            $scope.layout.navigation = nav.navigation;
             $scope.layout.activeSubNav = nav.activeSubNav;
         }
 

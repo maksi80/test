@@ -15,9 +15,6 @@
 
 </head>
 <body class="ng-cloak home-img" ng-controller="MainCtrl">
-    <div class="error-container">
-        <div class="error-message"></div>
-    </div>
     <div ng-include="'partials/header.html'" ng-show="layout.isLogged"></div>
    
     <section class="content-width" ng-view></section>
@@ -35,27 +32,6 @@
                       <span class="ok-button" ng-click="close()"  ng-bind-html="(buttonTittle || 'Ok') "></span>
                     </div>
                 </div>
-            </div>
-          </div>
-      </div>
-    </script>
-
-    <script type="text/ng-template" id="message-box-confirm.html">
-      <div class="overlay fill-parent">
-          <div class="popup">
-              <button class="close" ng-click="reject()" ng-if="showClose"><i class="icon-remove"></i></button>
-              <div class="popup-content">
-
-                  <div class="my-notification">
-                    <div class="content" ng-if="text" ng-bind-html="text">
-                     
-                    </div>
-                    <div class="popup-action">
-                      <span class="ok-button" ng-click="confirm()" ng-bind-html="(buttonTittleOk || 'U REDU') "></span>
-                      <span class="cancel-button" ng-click="reject()" ng-bind-html="(buttonTittle || 'Cancel') "></span>
-                    </div>
-                </div>
-
             </div>
           </div>
       </div>
@@ -82,7 +58,6 @@
   <script src="js/directives/directives.js"></script>
   <script src="js/directives/password-equals.js"></script>
   <script src="js/directives/prevent-click.js"></script>
-  <script src="js/directives/notification.js"></script>
   <script src="js/app.js"></script>
   
 </body>
