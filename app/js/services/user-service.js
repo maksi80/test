@@ -35,10 +35,9 @@ angular.module('PROJECT.services').factory('userService', ['$rootScope','$timeou
         },
         create: function(user) {
             var deferred = $q.defer();
-            var _this = this;
-            // simulate api call with $timeout
+
             $timeout(function () {
-                _this.getByUsername(user.username)
+                this.getByUsername(user.username)
                     .then(function (duplicateUser) {
                         if (duplicateUser !== null) {
                             deferred.resolve({ success: false, message: 'Username "' + user.username + '" is already taken' });
@@ -56,7 +55,7 @@ angular.module('PROJECT.services').factory('userService', ['$rootScope','$timeou
                             deferred.resolve({ success: true });
                         }
                     });
-            }, 1000);
+            }.bind(this), 1000);
 
             return deferred.promise;
         },
@@ -96,11 +95,12 @@ angular.module('PROJECT.services').factory('userService', ['$rootScope','$timeou
             return deferred.promise;
         },
         login: function(username, password, callback) {
-            var _this = this;
+            
+
             $timeout(function () {
-                var response;
-                _this.getByUsername(username)
+                this.getByUsername(username)
                     .then(function (user) {
+                        var response;
                         if (user !== null && user.password === password) {
                             response = { success: true , data: user };
                         } else {
@@ -108,7 +108,9 @@ angular.module('PROJECT.services').factory('userService', ['$rootScope','$timeou
                         }
                         callback(response);
                     });
-            }, 1000);
+
+            }.bind(this), 1000);
+
         },
         isLogged: function() {
             return getFromLocalStorage('isLogged');

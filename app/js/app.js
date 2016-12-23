@@ -44,7 +44,7 @@ config(['$routeProvider', '$httpProvider', '$locationProvider', function($routeP
     
 }])
 .constant('configValue', {
-      LS_KEY:    "storage_", 
+      LS_KEY:    "my_storage_", 
       USERS:     [{
                 username:       "admin",
                 email:          "admin@gmail.com",
