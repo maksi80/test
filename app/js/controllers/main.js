@@ -1,5 +1,8 @@
 'use strict';
-angular.module('PROJECT.controllers',[]).controller('MainCtrl', ['$scope','$rootScope','userService','navigation','$location','myProvider',function($scope, $rootScope, userService,navigation, $location,myProvider) {
+angular.module('PROJECT.controllers',[]).controller('MainCtrl', ['$scope','$rootScope','userService','navigation','$location',function($scope, $rootScope, userService,navigation, $location ) {
+        
+        userService.initLoad();
+        
         $rootScope.globals = {};
         $rootScope.layout = {};
 

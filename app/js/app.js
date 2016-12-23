@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('PROJECT', [ 'ngRoute', 'ngMessages', 'ngSanitize','PROJECT.controllers', 'PROJECT.providers','PROJECT.services', 'PROJECT.directives']).
+angular.module('PROJECT', [ 'ngRoute', 'ngMessages', 'ngSanitize','PROJECT.controllers', 'PROJECT.services', 'PROJECT.directives']).
 config(['$routeProvider', '$httpProvider', '$locationProvider', function($routeProvider, $httpProvider, $locationProvider) {
     
     $routeProvider.when('/', {redirectTo: '/home'});
@@ -43,6 +43,18 @@ config(['$routeProvider', '$httpProvider', '$locationProvider', function($routeP
 
     
 }])
+.constant('configValue', {
+      LS_KEY:    "storage_", 
+      USERS:     [{
+                username:       "admin",
+                email:          "admin@gmail.com",
+                password:       "12345",
+                role:           "admin",
+                registerDate:   new Date().getTime(),
+                latsChange:     new Date().getTime(),
+                id:             1
+            }]
+})
 .run(['$rootScope','$location','userService',function($rootScope,$location, userService ){
 
     $rootScope.$on("$routeChangeStart", function(event, next, current) {

@@ -1,8 +1,15 @@
 'use strict';
 
-angular.module('PROJECT.services').factory('userService', ['$rootScope','$timeout','$filter','$q', function($rootScope, $timeout, $filter, $q) {
+angular.module('PROJECT.services').factory('userService', ['$rootScope','$timeout','$filter','$q', 'configValue',function($rootScope, $timeout, $filter, $q, configValue) {
 
     var service = {
+        initLoad: function() {
+            var users = configValue.USERS;
+
+            if(!getUsers()){
+                setUsers(users);
+            }
+        },
         getAll: function() {
             var deferred = $q.defer();
             deferred.resolve(getUsers());
@@ -147,7 +154,7 @@ angular.module('PROJECT.services').factory('userService', ['$rootScope','$timeou
 
     
     function normalizeKey( key ) {
-        return( "storage_" + key );
+        return( configValue.LS_KEY + key );
     }
 
     function saveToLocalStorage(key, value) {
@@ -155,8 +162,10 @@ angular.module('PROJECT.services').factory('userService', ['$rootScope','$timeou
     }
 
     function getFromLocalStorage(key) {
-        key = normalizeKey( key );
-        return (key in localStorage) ? JSON.parse(localStorage.getItem(key)) : null;
+        var key = normalizeKey( key );
+        var storageItem = localStorage.getItem(key);
+        
+        return (storageItem != 'undefined' ? JSON.parse(storageItem) : null);
     }
 
     function getUsers() {
