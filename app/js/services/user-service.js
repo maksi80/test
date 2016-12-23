@@ -64,7 +64,9 @@ angular.module('PROJECT.services').factory('userService', ['$rootScope','$timeou
                 }
             }
             setUsers(users);
-            updateCurrentUser(user);
+            if(!$rootScope.layout.isAdmin) {
+                updateCurrentUser(user);
+            }
             deferred.resolve({ success: true });
 
             return deferred.promise;
