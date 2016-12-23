@@ -23,7 +23,7 @@ angular.module('PROJECT.controllers').controller('UserCtrl', ['$rootScope','$sco
                     userService.setCredentials(response.data);
                     $rootScope.$broadcast('authSuccess');
                     
-                    messageBox.alertCb('Dobrodosli!Uspesno ste se logovali',false,$timeout(function () {
+                    messageBox.alert('Dobrodosli!Uspesno ste se logovali',false,$timeout(function () {
                         if(response.data.role == "admin"){
                             $location.path('/lists');
                             return;
@@ -55,7 +55,7 @@ angular.module('PROJECT.controllers').controller('UserCtrl', ['$rootScope','$sco
             userService.create(user)
                 .then(function (response) {
                     if (response.success) {
-                        messageBox.alertCb('Registration successful',false,$timeout(function () {
+                        messageBox.alert('Registration successful',false,$timeout(function () {
                             $location.path('/login');
                         }, 2000));
                         /*alert('Registration successful');

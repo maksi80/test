@@ -1,6 +1,5 @@
 'use strict';
 angular.module('PROJECT.controllers',[]).controller('MainCtrl', ['$scope','$rootScope','userService','navigation','$location','myProvider',function($scope, $rootScope, userService,navigation, $location,myProvider) {
-        //console.log("MyController - myProvider: " + myProvider);
         $rootScope.globals = {};
         $rootScope.layout = {
             loader: false,
@@ -27,7 +26,6 @@ angular.module('PROJECT.controllers',[]).controller('MainCtrl', ['$scope','$root
                         }
                     }
                     $rootScope.layout.isAdmin = userData.role == "admin" ? true : false;
-                    //console.log('is admin', $rootScope.layout.isAdmin);
                 }
             })
         });

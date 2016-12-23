@@ -1,10 +1,6 @@
 'use strict';
 angular.module('PROJECT.controllers').controller('EditCtrl', ['$rootScope','$scope','$location','userService','$routeParams','messageBox',function($rootScope,$scope,$location,userService,$routeParams,messageBox) {
         
-        /*console.log("IS isLogged",$rootScope.layout.isLogged);
-        console.log("IS ADMIN",$rootScope.layout.isAdmin);
-        console.log("currentUser",$rootScope.globals);*/
-        
         var id = $routeParams.id;
         
         if(!$rootScope.layout.isAdmin && $rootScope.globals.currentUser.id != id){
@@ -25,7 +21,6 @@ angular.module('PROJECT.controllers').controller('EditCtrl', ['$rootScope','$sco
         $scope.editAccount = function() {
             if(!$scope.editForm.$valid){
                 messageBox.alert("nije validna Register forma");
-                //$scope.registerForm.$setPristine();
                 return;
             }
 
