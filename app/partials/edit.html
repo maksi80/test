@@ -4,11 +4,11 @@
             <h2 class="title">Izmeni nalog</h2>
             <div class="block">
                 <!--ng-class="{ 'error' : editForm.username.$dirty}" -->
-                <label>Ime i Prezime</label>
+                <label>Username</label>
                 <input type="text" class="" name="username" ng-model="user.username" placeholder="" ng-required='true' ng-pattern="/^[a-zA-Z\ ]+$/">
                 <p ng-messages="editForm.username.$error"  ng-if='editForm.username.$dirty  || editForm.$submitted'>
                     <span ng-message="required" class="error-view">
-                        Unesi ime i prezime
+                        Unesi username
                     </span>
                     <span ng-message="pattern" class="error-view">
                         Only characters A-Z, a-z are  acceptable.
