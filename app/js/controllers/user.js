@@ -1,11 +1,9 @@
 'use strict';
 angular.module('PROJECT.controllers').controller('UserCtrl', ['$rootScope','$scope','$location','userService','$window','messageBox','$timeout',function($rootScope, $scope,$location,userService, $window,messageBox,$timeout) {
 
-        $scope.user = {
-            username : "",
-            email: "",
-            password: ""
-        };
+        userService.pullUserData().then(function(userData) {
+            $scope.user = userData
+        });
 
         $scope.login = function() {
             if(!$scope.loginForm.$valid){

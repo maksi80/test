@@ -64,6 +64,7 @@ angular.module('PROJECT.services').factory('userService', ['$rootScope','$timeou
                 }
             }
             setUsers(users);
+            updateCurrentUser(user);
             deferred.resolve({ success: true });
 
             return deferred.promise;
@@ -162,6 +163,10 @@ angular.module('PROJECT.services').factory('userService', ['$rootScope','$timeou
 
     function setUsers(users) {
         saveToLocalStorage('users',users);
+    }
+
+    function updateCurrentUser(user) {
+        saveToLocalStorage('currentUser',user);
     }
 
 }]);
